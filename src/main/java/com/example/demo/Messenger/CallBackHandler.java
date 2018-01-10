@@ -160,10 +160,11 @@ public class CallBackHandler {
 
                 MessageResponse wcsRes01 = watson.sendMessage(wcsClientId, myMessage);
                 sendButtonMessage(senderId);
+                sendTextMessage(senderId, wcsRes01.getTextConcatenated(""));
                 sendGifMessage(senderId,"Click");
 
 
-                sendTextMessage(senderId, wcsRes01.getTextConcatenated(""));
+
 
             } catch(NoSuchMethodError e) {
                 e.printStackTrace();
