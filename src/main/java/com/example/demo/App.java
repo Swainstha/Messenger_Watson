@@ -1,6 +1,7 @@
 package com.example.demo;
 
-import org.riversun.wcs.WcsClient;
+
+import org.riverson.wcs.WcsClient;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 
 public class App {

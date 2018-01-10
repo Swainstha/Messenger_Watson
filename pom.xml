@@ -34,6 +34,20 @@
 			<!--<artifactId>wcs</artifactId>-->
 			<!--<version>1.0.2</version>-->
 		<!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.riversun</groupId>-->
+            <!--<artifactId>wcs</artifactId>-->
+            <!--<version>1</version>-->
+            <!--<systemPath>${project.basedir}/wcs.jar</systemPath>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.riverson</groupId>
+            <artifactId>wcs</artifactId>
+            <scope>system</scope>
+            <version>1</version>
+            <systemPath>${basedir}/src/lib/wcs.jar</systemPath>
+        </dependency>
+
 	</dependencies>
 
 	<build>
