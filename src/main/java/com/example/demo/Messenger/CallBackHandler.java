@@ -97,7 +97,10 @@ public class CallBackHandler {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String welcome() {
 
-        return "hello";
+        final String myMessage01 = "hello";
+        //MessageResponse wcsRes01 = ;
+        watson.sendMessage(wcsClientId, myMessage01);
+        return "gu khau";
     }
 
     @RequestMapping(value = "/webhooks",method = RequestMethod.GET)
