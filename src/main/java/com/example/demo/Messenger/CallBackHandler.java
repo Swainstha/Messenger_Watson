@@ -107,7 +107,7 @@ public class CallBackHandler {
         final String myMessage01 = "hello";
         //MessageResponse wcsRes01 = ;
         watson.sendMessage(wcsClientId, myMessage01);
-        return "gu khau";
+        return "working";
     }
 
     @RequestMapping(value = "/webhooks",method = RequestMethod.GET)
@@ -159,8 +159,9 @@ public class CallBackHandler {
                 String myMessage = messageText.toLowerCase();
 
                 MessageResponse wcsRes01 = watson.sendMessage(wcsClientId, myMessage);
-                sendGifMessage(senderId,"Click");
                 sendButtonMessage(senderId);
+                sendGifMessage(senderId,"Click");
+
 
                 sendTextMessage(senderId, wcsRes01.getTextConcatenated(""));
 
