@@ -1,6 +1,7 @@
 package com.example.demo.Messenger;
 
 import com.github.messenger4j.MessengerPlatform;
+import com.github.messenger4j.common.WebviewHeightRatio;
 import com.github.messenger4j.exceptions.MessengerApiException;
 import com.github.messenger4j.exceptions.MessengerIOException;
 import com.github.messenger4j.exceptions.MessengerVerificationException;
@@ -9,6 +10,9 @@ import com.github.messenger4j.receive.events.AccountLinkingEvent;
 import com.github.messenger4j.receive.handlers.*;
 import com.github.messenger4j.send.*;
 import com.github.messenger4j.send.buttons.Button;
+import com.github.messenger4j.send.buttons.PostbackButton;
+import com.github.messenger4j.send.buttons.UrlButton;
+import com.github.messenger4j.send.templates.ButtonTemplate;
 import com.github.messenger4j.send.templates.GenericTemplate;
 import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 import com.example.demo.Messenger.domain.*;
@@ -25,9 +29,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Date;
 import java.util.stream.Collectors;
+
+import static jdk.nashorn.internal.runtime.JSType.of;
 
 /**
  * Created by aboullaite on 2017-02-26.
@@ -155,11 +162,48 @@ public class CallBackHandler {
 
 
                 sendTextMessage(senderId, wcsRes01.getTextConcatenated(""));
+                sendGifMessage(senderId,"Click");
+                sendButtonMessage(senderId);
             } catch(NoSuchMethodError e) {
+                e.printStackTrace();
+            } catch(MessengerApiException e) {
+                e.printStackTrace();
+            } catch(MessengerIOException e) {
                 e.printStackTrace();
             }
 
         };
+    }
+
+    private void sendImageMessage(String recipientId) throws MessengerApiException, MessengerIOException {
+        this.sendClient.sendImageAttachment(recipientId, RESOURCE_URL + "/assets/rift.png");
+    }
+
+    private void sendGifMessage(String recipientId) throws MessengerApiException, MessengerIOException {
+        this.sendClient.sendImageAttachment(recipientId, "https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif");
+    }
+
+    private void sendAudioMessage(String recipientId) throws MessengerApiException, MessengerIOException {
+        this.sendClient.sendAudioAttachment(recipientId, RESOURCE_URL + "/assets/sample.mp3");
+    }
+
+    private void sendVideoMessage(String recipientId) throws MessengerApiException, MessengerIOException {
+        this.sendClient.sendVideoAttachment(recipientId, RESOURCE_URL + "/assets/allofus480.mov");
+    }
+
+    private void sendFileMessage(String recipientId) throws MessengerApiException, MessengerIOException {
+        this.sendClient.sendFileAttachment(recipientId, RESOURCE_URL + "/assets/test.txt");
+    }
+
+    private void sendButtonMessage(String recipientId) throws MessengerApiException, MessengerIOException {
+        final List<Button> buttons = Button.newListBuilder()
+                .addUrlButton("Open Web URL", "https://www.oculus.com/en-us/rift/").toList()
+                .addPostbackButton("Trigger Postback", "DEVELOPER_DEFINED_PAYLOAD").toList()
+                .addCallButton("Call Phone Number", "+16505551234").toList()
+                .build();
+
+        final ButtonTemplate buttonTemplate = ButtonTemplate.newBuilder("Tap a button", buttons).build();
+        this.sendClient.sendTemplate(recipientId, buttonTemplate);
     }
 
     private void sendSpringDoc(String recipientId, String keyword) throws MessengerApiException, MessengerIOException, IOException {
