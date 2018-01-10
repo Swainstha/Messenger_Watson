@@ -151,10 +151,7 @@ public class CallBackHandler {
             try {
                 String myMessage = messageText.toLowerCase();
 
-                sendTextMessage(senderId, "finished");
-
-                final String myMessage01 = "hello";
-                MessageResponse wcsRes01 = watson.sendMessage(wcsClientId, myMessage01);
+                MessageResponse wcsRes01 = watson.sendMessage(wcsClientId, myMessage);
 
 
                 sendTextMessage(senderId, wcsRes01.getTextConcatenated(""));
