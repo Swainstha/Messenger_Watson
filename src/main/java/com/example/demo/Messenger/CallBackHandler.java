@@ -159,12 +159,9 @@ public class CallBackHandler {
                 String myMessage = messageText.toLowerCase();
 
                 MessageResponse wcsRes01 = watson.sendMessage(wcsClientId, myMessage);
-                sendButtonMessage(senderId);
-                sendTextMessage(senderId, wcsRes01.getTextConcatenated(""));
-                sendGifMessage(senderId,"Click");
-
-
-
+                sendQuickReply(senderId);
+//                sendButtonMessage(senderId);
+//                sendTextMessage(senderId, wcsRes01.getTextConcatenated(""));
 
             } catch(NoSuchMethodError e) {
                 e.printStackTrace();
