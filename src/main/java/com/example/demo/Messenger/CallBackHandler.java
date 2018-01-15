@@ -118,6 +118,7 @@ public class CallBackHandler {
         logger.debug("Received Webhook verification request - mode: {} | verifyToken: {} | challenge: {}", mode,
                 verifyToken, challenge);
         try {
+            MessageResponse wcsWelcomeRes = watson.startConversation(wcsClientId);
             return ResponseEntity.ok(this.receiveClient.verifyWebhook(mode, verifyToken, challenge));
         } catch (MessengerVerificationException e) {
             logger.warn("Webhook verification failed: {}", e.getMessage());
