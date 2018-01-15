@@ -2,6 +2,8 @@
 
 * The used watson functions can be found in com.example.demo.Messenger.CallBackHandler.java
 
+* While running the project if "Nosuchmethod" error occurs do check if the library com.squareup.okhttp3' version in external libraries of the project mismatches with the version in wcs library ie riversun used for watson connection.
+
 ##### Required fields
 
 * private static final String WATSON_CONVERSATION_USERNAME = "943cfb53-53e2-4b4d-b89a-32180ca0d732";
