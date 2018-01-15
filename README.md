@@ -1,8 +1,8 @@
 ### Watson Conversation with Messenger4J
 
-* The used watson functions can be found in com.example.demo.Messenger.CallBackHandler.java
+* The used watson functions can be found in **`com.example.demo.Messenger.CallBackHandler.java`**
 
-* While running the project if "Nosuchmethod" error occurs do check if the library com.squareup.okhttp3' version in external libraries of the project mismatches with the version in wcs library ie riversun used for watson connection.
+* While running the project if **`Nosuchmethod`** error occurs do check if the library **`com.squareup.okhttp3`** version in external libraries of the project mismatches with the version in wcs library i.e. riverson in path **`repo/org/riverson/wcs`** used for watson connection.
 
 ##### Required fields
 
